@@ -1,0 +1,14 @@
+<div class="panel">
+  <div class="form-inline">
+    <div class="form-group">
+      <input class="form-group" type="text" [(ngModel)]="name" placeholder="Model">
+      <input type="number" class="form-control" [(ngModel)]="price" placeholder="Price">
+      <button class="btn btn-default" (click)="addItem(name, price)">Add Phone</button>
+    </div>
+    <table class="table table-striped">
+      <tr *ngFor="let item of items">
+        <td>{{item.name}}</td>
+      </tr>
+    </table>
+  </div>
+</div>

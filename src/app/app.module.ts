@@ -6,14 +6,17 @@ import { AppComponent } from './app.component';
 import { ChildComponent } from './child.component';
 import { AppInputDecoratorComponent } from './app-input-decorator.component';
 import { ChildClickComponent } from './components/connection-to-child/connection-to-child.component';
-
+import { TwoWayBindComponent } from './components/two-way-bind/two-way-bind.component';
+import { PhoneComponent } from './components/4.1services-n-di/phone.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ChildComponent,
     AppInputDecoratorComponent,
-    ChildClickComponent
+    ChildClickComponent,
+    TwoWayBindComponent,
+    PhoneComponent
   ],
   imports: [
     BrowserModule,
