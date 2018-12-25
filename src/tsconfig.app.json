@@ -9,6 +9,9 @@
       ],
       "@services/*": [
         "./app/services/*"
+      ],
+      "@components/*": [
+        "./app/components/*"
       ]
     },
     "module": "es2015",

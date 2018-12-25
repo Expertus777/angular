@@ -8,6 +8,8 @@ import { AppInputDecoratorComponent } from './app-input-decorator.component';
 import { ChildClickComponent } from './components/connection-to-child/connection-to-child.component';
 import { TwoWayBindComponent } from './components/two-way-bind/two-way-bind.component';
 import { PhoneComponent } from './components/4.1services-n-di/phone.component';
+import { DataComponent } from '@components/4.3one-serveces-many-components/data.component';
+
 
 @NgModule({
   declarations: [
@@ -16,7 +18,8 @@ import { PhoneComponent } from './components/4.1services-n-di/phone.component';
     AppInputDecoratorComponent,
     ChildClickComponent,
     TwoWayBindComponent,
-    PhoneComponent
+    PhoneComponent,
+    DataComponent
   ],
   imports: [
     BrowserModule,
