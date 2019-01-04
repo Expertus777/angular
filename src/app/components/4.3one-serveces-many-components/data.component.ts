@@ -5,8 +5,7 @@ import { Phone } from '../4.1services-n-di/phone';
 
 @Component({
   selector: 'data-component',
-  templateUrl: `./data-component.html`,
-  providers: [DataService, LogService]
+  templateUrl: './data-component.html'
 })
 
 export class DataComponent implements OnInit {

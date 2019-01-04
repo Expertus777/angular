@@ -1,0 +1,12 @@
+input {
+  margin-bottom: 10px;
+  &.ng-untouched {
+    background: gray;
+  }
+  &.ng-touched.ng-valid {
+    border: solid lightgreen 1px;
+  }
+  &.ng-touched.ng-invalid {
+    border: solid red 1px;
+  }
+}

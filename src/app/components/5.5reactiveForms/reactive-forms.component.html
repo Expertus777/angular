@@ -1,0 +1,30 @@
+<form [formGroup]="reactiveForm" novalidate (ngSubmit)="submit()">
+  <div class="form-group">
+    <label for="name">Name:</label>
+    <input class="form-control" type="text" formControlName="userName">
+    <div class="alert alert-danger"
+         *ngIf="reactiveForm.controls['userName'].invalid && reactiveForm.controls['userName'].touched">
+      <p>Name is not provided</p>
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="email">Email: </label>
+    <input type="email" class="form-control" name="email" formControlName="userEmail">
+    <div class="alert alert-danger"
+         *ngIf="showError(reactiveForm.controls['userEmail'])">
+      <p>Email is not valid</p>
+    </div>
+  </div>
+  <div formArrayName="userPhones">
+    <label for="phone">Phone:</label>
+    <div class="form-group" *ngFor="let phone of reactiveForm.controls['userPhones'].controls; let i = index">
+      <input class="form-control" type="phone" formControlName="{{i}}">
+    </div>
+  </div>
+  <div class="form-group">
+    <button class="btn btn-default" (click)="addPhone()">
+      Add Phone 
+    </button>
+    <button class="btn btn-default" [disabled]="reactiveForm.invalid" type="submit">Send</button>
+  </div>
+</form>
