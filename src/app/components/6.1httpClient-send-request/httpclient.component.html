@@ -1,0 +1,18 @@
+<div class="alert alert-danger" *ngIf="error">
+  {{error}}
+</div>
+<ul class="col-md-12">
+  <li *ngFor="let user of users">
+    <p><span>Useer Name:</span> {{user?.name}}</p>
+    <p><span>Useer age:</span> {{user?.age}}</p>
+  </li>
+</ul>
+
+<div *ngIf="done">{{factorial}}</div>
+<div class="form-group">
+  <label>Введите число</label>
+  <input class="form-control" type="number" name="factorial" [(ngModel)]="num" />
+</div>
+<div class="form-group">
+  <button class="btn btn-default" (click)="submit(num)">Отправить</button>
+</div>
