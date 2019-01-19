@@ -13,9 +13,10 @@ import { UserService } from '@services/user.service';
 export class HttpClientComponent implements OnInit {
   public users: User[] = [];
   public error: any;
+  public  num: number;
 
   public factorial: number;
-  public done: boolean = false;
+  public done = false;
 
   constructor(private http: HttpClient, private userService: UserService) {}
 
@@ -27,9 +28,9 @@ export class HttpClientComponent implements OnInit {
      );
   }
 
-  submit(num: number){
-    this.userService.getFactorial(num).subscribe((data:number) => {
-      this.factorial=data; this.done=true;
+  submit(num: number) {
+    this.userService.getFactorial(num).subscribe((data: number) => {
+      this.factorial = data; this.done = true;
     });
   }
 }
