@@ -5,12 +5,15 @@ import { User, UsersServerResponse } from './user';
 import { UserService } from '@services/user.service';
 
 @Component({
-  selector: 'http-client',
+  selector: 'app-http-client',
   templateUrl: './httpclient.component.html',
   styleUrls: ['./httpclient.component.scss']
 })
 
 export class HttpClientComponent implements OnInit {
+  public user: User = new User();
+  public receivedUser: User;
+
   public users: User[] = [];
   public error: any;
   public  num: number;
@@ -28,9 +31,16 @@ export class HttpClientComponent implements OnInit {
      );
   }
 
-  submit(num: number) {
+  /*submit(num: number) {
     this.userService.getFactorial(num).subscribe((data: number) => {
       this.factorial = data; this.done = true;
     });
+  }*/
+
+  public sendUser(user: User): any {
+    this.userService.postData(user).subscribe(
+      (data: User) => { this.receivedUser = data; this.done = true; },
+      error => console.error(error.message)
+    );
   }
 }

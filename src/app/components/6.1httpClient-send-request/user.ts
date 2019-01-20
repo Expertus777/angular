@@ -4,5 +4,5 @@ export class User {
 }
 
 export class UsersServerResponse {
-  userList: Array<User>
+  userList: Array<User>;
 }

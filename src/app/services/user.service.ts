@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import { _throw } from 'rxjs/observable/throw';
 import { map, catchError } from 'rxjs/operators';
@@ -11,7 +11,7 @@ export class UserService {
   constructor(private http: HttpClient) {}
 
   public getUsers(): Observable<User[]> {
-    return this.http.get<User[]>('/assets/users.json').pipe(
+    return this.http.get<UsersServerResponse>('/assets/users.json').pipe(
       map(data => {
         const userList = data['userList'];
         return userList.map((user: User | any) => {
@@ -32,5 +32,11 @@ export class UserService {
     const url = 'api/getFactorial.php';
     const params = new HttpParams().set('number', String(num));
     return this.http.get<number>(url, {params});
+  }
+
+  public postData(user: User): Observable<User> {
+    const body = {name: user.name, age: user.age};
+    const headers = new HttpHeaders().set('Authorization', 'my-aut-token')
+    return this.http.post<User>('api/postUser.php', user, {headers: headers});
   }
 }
