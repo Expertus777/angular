@@ -7,7 +7,7 @@ import {LogService} from '@services/log.service';
   styleUrls: ['./app.component.scss'],
   providers: [LogService]
 })
-export class AppComponent implements AfterViewInit {
+export class AppComponent {
   userName = 'Ruslan';
 
   name = 'Bob';
@@ -43,7 +43,7 @@ export class AppComponent implements AfterViewInit {
     this.clickTitle.nativeElement.textContent = 'RESET';
   }
 
-  ngAfterViewInit(): void {
+  /*ngAfterViewInit(): void {
     console.log('this.clickTitle.nativeElement.textContent: ', this.clickTitle.nativeElement.textContent);
-  }
+  }*/
 }

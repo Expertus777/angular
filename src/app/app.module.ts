@@ -17,6 +17,7 @@ import { HttpClientComponent } from '@components/6.1httpClient-send-request/http
 import { HomeComponent } from '@components/7.1routing/home.component';
 import { AboutComponent } from '@components/7.1routing/about.component';
 import { NotFoundComponent } from '@components/7.1routing/not-found.component';
+import { ItemComponent } from '@components/7.1routing/item.component';
 
 import { LogService } from '@services/log.service';
 import { DataService } from '@services/data.service';
@@ -27,6 +28,7 @@ const appRoutes: Routes = [
   {path: '', component: HomeComponent},
   {path: 'about', component: AboutComponent},
   {path: 'contact', redirectTo: '/about', pathMatch: 'full'},
+  {path: 'item/:id', component: ItemComponent},
   {path: '**', redirectTo: '/'}
 ];
 
@@ -45,7 +47,8 @@ const appRoutes: Routes = [
     HttpClientComponent,
     HomeComponent,
     AboutComponent,
-    NotFoundComponent
+    NotFoundComponent,
+    ItemComponent
   ],
   imports: [
     BrowserModule,
