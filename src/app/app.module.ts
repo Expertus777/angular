@@ -2,6 +2,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ToastrModule } from 'ngx-toastr';
 
 import { AppComponent } from './app.component';
 import { ChildComponent } from './child.component';
@@ -18,17 +20,25 @@ import { HomeComponent } from '@components/7.1routing/home.component';
 import { AboutComponent } from '@components/7.1routing/about.component';
 import { NotFoundComponent } from '@components/7.1routing/not-found.component';
 import { ItemComponent } from '@components/7.1routing/item.component';
+import { ItemDetailsComponent } from '@components/7.1routing/item.details.component';
+import { ItemStatComponent } from '@components/7.1routing/item.stat.component';
 
 import { LogService } from '@services/log.service';
 import { DataService } from '@services/data.service';
 import { UserService } from '@services/user.service';
 import { Routes, RouterModule } from '@angular/router';
+import { Guard } from '@app/app/guard';
+
+const itemRoutes: Routes = [
+  { path: 'details', component: ItemDetailsComponent},
+  { path: 'stat', component: ItemStatComponent}
+];
 
 const appRoutes: Routes = [
   {path: '', component: HomeComponent},
-  {path: 'about', component: AboutComponent},
+  {path: 'about', component: AboutComponent, canActivate: [Guard]},
   {path: 'contact', redirectTo: '/about', pathMatch: 'full'},
-  {path: 'item/:id', component: ItemComponent},
+  {path: 'item/:id', component: ItemComponent, children: itemRoutes},
   {path: '**', redirectTo: '/'}
 ];
 
@@ -48,19 +58,28 @@ const appRoutes: Routes = [
     HomeComponent,
     AboutComponent,
     NotFoundComponent,
-    ItemComponent
+    ItemComponent,
+    ItemDetailsComponent,
+    ItemStatComponent
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    RouterModule.forRoot(appRoutes)
+    RouterModule.forRoot(appRoutes),
+    ToastrModule.forRoot({
+      positionClass: 'toast-top-left',
+      newestOnTop: false,
+      preventDuplicates: true
+    })
   ],
   providers: [
     LogService,
     DataService,
-    UserService
+    UserService,
+    Guard
   ],
   bootstrap: [AppComponent]
 })

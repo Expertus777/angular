@@ -1,5 +1,7 @@
-import {AfterViewInit, Component, ElementRef, ViewChild} from '@angular/core';
-import {LogService} from '@services/log.service';
+import {AfterViewInit, Component, ElementRef, OnInit, ViewChild} from '@angular/core';
+import { LogService } from '@services/log.service';
+import { Router, ActivatedRoute } from '@angular/router';
+import { Subscription} from 'rxjs/Subscription';
 
 @Component({
   selector: 'app-root',
@@ -9,41 +11,30 @@ import {LogService} from '@services/log.service';
 })
 export class AppComponent {
   userName = 'Ruslan';
-
   name = 'Bob';
-  age = 27;
-
   title = 'my project';
+  public isHomePage: boolean;
 
-  counter = 0;
-  clicks = 0;
+  private routeSubscription: Subscription;
+
+  constructor(private router: Router, private activatedRoute: ActivatedRoute) {
+    this.routeSubscription = activatedRoute.url.subscribe(url => {
+      if (url[0].path === '') {
+        this.isHomePage = true;
+      } else {
+        this.isHomePage = false;
+      }
+      console.log(this.isHomePage);
+    });
+  }
 
   @ViewChild('clickTitle', {read: ElementRef}) clickTitle: ElementRef;
-
-  increase($event): void {
-    this.counter++;
-    console.log($event);
-  }
-
-  public onCorrelation(value) {
-    value.increased === true ? this.clicks++ : this.clicks--;
-    if (value.e.ctrlKey === true && value.increased) {
-      this.clickTitle.nativeElement.style = 'color: red';
-      this.clicks += 10;
-    } else if (value.e.ctrlKey === true && !value.increased) {
-      this.clickTitle.nativeElement.style = 'color: lightblue';
-      this.clicks -= 10;
-    } else {
-      this.clickTitle.nativeElement.style = 'color: black';
-    }
-  }
-
-  public resetTitle() {
-    console.log('RESET TITLE');
-    this.clickTitle.nativeElement.textContent = 'RESET';
-  }
 
   /*ngAfterViewInit(): void {
     console.log('this.clickTitle.nativeElement.textContent: ', this.clickTitle.nativeElement.textContent);
   }*/
+
+  public navigateTo(param): void {
+    this.router.navigate([param]);
+  }
 }
